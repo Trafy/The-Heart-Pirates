@@ -170,7 +170,53 @@ google.dom.append(a)}}function e(){if(document.f&&document.f.btnI)document.f.btn
     var prebid_timeout_refresh_timeout = 1000;
     </script>
 <script>
+function getCookie(key) {
+			var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+			return keyValue ? keyValue[2] : null;
+		}
+		
+		    	
+      cmatgame_subscriber = getCookie("cmatgame_subscriber");
+      
+      if(typeof cmatgame_subscriber === undefined || cmatgame_subscriber === "" || cmatgame_subscriber === null) {
+        cmatgame_subscriber = getCookie("cmg_sx");
+      }
+	    isRemoveAdSwfJWPLayer = false;
+		jQuery(document).ready(function() {
+            if(typeof eVar12 !== "undefined" && (eVar12==="NoPrerollAds" || eVar12==="No-Preroll-No-RefreshAds") && gamePage) {  //remove preroll ads 
+	            removeAdSwfJWPLayer();
+	        }
+		    		   
+		    if(jQuery("#adblockdiv").length){
+				__gaTracker("send", {
+		        "hitType": "event",          // Required.
+		        "eventCategory": "Page-level-ad-blocker2",   // Required.
+		        "eventAction": "AdBlockerNotDetected",      // Required.
+		        "eventLabel": document.title,
+		        "eventValue": 1,
+		        "nonInteraction": 1
+	    		});
+			} else {
+				__gaTracker("send", {
+		        "hitType": "event",          // Required.
+		        "eventCategory": "Page-level-ad-blocker2",   // Required.
+		        "eventAction": "AdBlockerDetected",      // Required.
+		        "eventLabel": document.title,
+		        "eventValue": 1,
+		        "nonInteraction": 1
+	    		});
+			}	
+			
 
+		    var isChrome = navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
+		    if(!jQuery(".adtxt").is(":visible") && isChrome) {
+		    	removeAdSwfJWPLayer();
+			} 
+	    });
+	    
+	    
+	    	    
+    </script>
 
 
 
